@@ -28,6 +28,22 @@ results = taxonomy_collection.query(
         n_results=results_n
         )
 
+ids_flat = [item for sublist in results['ids'] for item in sublist]
+distances_flat = [item for sublist in results['distances'] for item in sublist]
+sources_flat = [item['source'] for sublist in results['metadatas'] for item in sublist]
+documents_flat = [item for sublist in results['documents'] for item in sublist]
+
+# Ensure equal lengths by checking the smallest list size to avoid index mismatch
+min_length = min(len(ids_flat), len(distances_flat), len(sources_flat), len(documents_flat))
+
+# Create a DataFrame
+df = pd.DataFrame({
+    'ID': ids_flat[:min_length],
+    'Similarity Score': distances_flat[:min_length],
+    'Market Name': sources_flat[:min_length]
+})
+
+
 # Display the DataFrame
 if 'clicked' not in st.session_state:
     st.session_state.clicked = False
@@ -38,8 +54,4 @@ def click_button():
 st.button('Search', on_click=click_button)
 
 if st.session_state.clicked:
-    for i in range(len(results['ids'][0])):
-        st.write(results['metadatas'][0][i]['source'])
-        score = round(results['distances'][0][i], 2)
-        st.write(f"Similarity Score: {score}")
-st.caption("Lower score is better match")        
+    st.write(df)       
