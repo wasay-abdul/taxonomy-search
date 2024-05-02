@@ -1,4 +1,4 @@
 pandas
 streamlit
 chromadb
-sqlite3
+pysqlite3
