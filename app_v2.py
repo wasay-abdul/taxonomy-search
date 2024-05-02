@@ -15,7 +15,7 @@ st.title('Taxonomy Search')
 
 keyword_val = st.text_input("Enter keyword to search the taxonomy", key="keyword")
 results_n = st.text_input("Enter number of simliar markets you would like to look at", key="results_n")
-results_n = int(results_n)
+
 
 results = taxonomy_collection.query(
         query_texts=[keyword_val],
