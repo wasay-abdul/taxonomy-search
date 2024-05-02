@@ -1,6 +1,9 @@
 import pandas as pd
 import chromadb
 import streamlit as st
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 client = chromadb.PersistentClient(path="taxonomy_db")
 taxonomy_collection = client.get_collection("taxonomy_collection")
