@@ -41,5 +41,5 @@ if st.session_state.clicked:
     for i in range(len(results['ids'][0])):
         st.write(results['metadatas'][0][i]['source'])
         score = round(results['distances'][0][i], 2)
-        st.write(f"Score: {score}")
+        st.write(f"Similarity Score: {score}")
 st.caption("Lower score is better match")        
