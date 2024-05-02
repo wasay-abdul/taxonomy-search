@@ -55,3 +55,4 @@ st.button('Search', on_click=click_button)
 
 if st.session_state.clicked:
     st.write(df)       
+    st.caption("Lower score is better match") 
