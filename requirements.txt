@@ -2,3 +2,4 @@ pandas
 streamlit
 chromadb
 pysqlite3-binary
+pysqlite3
