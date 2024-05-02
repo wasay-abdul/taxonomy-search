@@ -12,9 +12,14 @@ taxonomy_collection = client.get_collection("taxonomy_collection")
 
 st.title('Taxonomy Search')
 
-
 keyword_val = st.text_input("Enter keyword to search the taxonomy", key="keyword")
-results_n = st.text_input("Enter number of simliar markets you would like to look at", key="results_n")
+results_n = st.text_input("Enter number of simliar markets you would like to look at")
+
+# Convert results_n to integer, using a default value if conversion fails
+try:
+    results_n = int(results_n)
+except ValueError:
+    results_n = 5  # Default value if input is not a valid integer
 
 
 results = taxonomy_collection.query(
